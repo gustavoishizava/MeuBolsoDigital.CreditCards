@@ -16,8 +16,13 @@
     </PackageReference>
     <PackageReference Include="coverlet.msbuild" Version="3.1.2"/>
     <PackageReference Include="MeuBolsoDigital.Core" Version="1.0.2"/>
+    <PackageReference Include="Moq" Version="4.18.2"/>
+    <PackageReference Include="Moq.AutoMock" Version="3.4.0"/>
+    <PackageReference Include="MeuBolsoDigital.Application.Utils" Version="1.0.2"/>
+    <PackageReference Include="Bogus" Version="34.0.2"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MBD.CreditCards.Domain\MBD.CreditCards.Domain.csproj"/>
+    <ProjectReference Include="..\MBD.CreditCards.Application\MBD.CreditCards.Application.csproj"/>
   </ItemGroup>
 </Project>

@@ -107,6 +107,7 @@ namespace MBD.CreditCards.Application.Services
             else
                 creditCard.Deactivate();
 
+            await _repository.UpdateAsync(creditCard);
             await _unitOfWork.CommitAsync();
 
             return Result.Success();
