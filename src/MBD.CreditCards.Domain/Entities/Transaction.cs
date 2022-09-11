@@ -19,5 +19,9 @@ namespace MBD.CreditCards.Domain.Entities
             CreatedAt = createdAt;
             Value = value;
         }
+
+        protected Transaction()
+        {
+        }
     }
 }

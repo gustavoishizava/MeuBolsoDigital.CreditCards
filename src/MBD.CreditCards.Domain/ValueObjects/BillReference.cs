@@ -17,6 +17,8 @@ namespace MBD.CreditCards.Domain.ValueObjects
             Year = year;
         }
 
+        protected BillReference() { }
+
         public DateTime GetClosingDate(int day)
         {
             var date = GetDate(day);

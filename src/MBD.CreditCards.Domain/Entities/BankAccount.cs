@@ -14,5 +14,9 @@ namespace MBD.CreditCards.Domain.Entities
             TenantId = tenantId;
             Description = description;
         }
+
+        protected BankAccount()
+        {
+        }
     }
 }

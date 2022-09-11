@@ -1,13 +1,23 @@
 using System.Threading.Tasks;
+using MBD.CreditCards.Infrastructure.Context;
 using MeuBolsoDigital.Core.Interfaces.Repositories;
 
 namespace MBD.CreditCards.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public Task<bool> CommitAsync()
+        private readonly CreditCardContext _context;
+
+        public UnitOfWork(CreditCardContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
+            _context.StartTransaction();
+        }
+
+        public async Task<bool> CommitAsync()
+        {
+            await _context.CommitAsync();
+            return true;
         }
     }
 }

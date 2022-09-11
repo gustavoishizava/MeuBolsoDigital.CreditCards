@@ -22,7 +22,7 @@ namespace MBD.CreditCards.Application.IntegrationEvents.Handlers
         public async Task Handle(BankAccountCreatedIntegrationEvent notification, CancellationToken cancellationToken)
         {
             var bankAccount = new BankAccount(notification.Id, notification.TenantId, notification.Description);
-            _bankAccountRepository.Add(bankAccount);
+            await _bankAccountRepository.AddAsync(bankAccount);
 
             await _unitOfWork.CommitAsync();
         }

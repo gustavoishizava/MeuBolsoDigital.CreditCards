@@ -2,6 +2,9 @@
   <ItemGroup>
     <ProjectReference Include="..\MBD.CreditCards.Domain\MBD.CreditCards.Domain.csproj"/>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Ishizava.MongoDB.Context" Version="1.0.5"/>
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
