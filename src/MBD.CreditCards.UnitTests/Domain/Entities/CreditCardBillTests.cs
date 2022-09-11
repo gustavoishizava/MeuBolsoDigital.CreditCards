@@ -1,6 +1,5 @@
 using System;
 using MBD.CreditCards.Domain.Entities;
-using MBD.CreditCards.Domain.Enumerations;
 using Xunit;
 
 namespace MBD.CreditCards.UnitTests.Domain.Entities

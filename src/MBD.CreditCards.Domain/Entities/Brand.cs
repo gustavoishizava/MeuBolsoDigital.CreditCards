@@ -1,4 +1,4 @@
-namespace MBD.CreditCards.Domain.Enumerations
+namespace MBD.CreditCards.Domain.Entities
 {
     public enum Brand
     {

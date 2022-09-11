@@ -1,6 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using MBD.CreditCards.Domain.Enumerations;
+using MBD.CreditCards.Domain.Entities;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 

@@ -1,6 +1,5 @@
 using System;
 using MBD.CreditCards.Domain.Entities;
-using MBD.CreditCards.Domain.Enumerations;
 using MeuBolsoDigital.Core.Exceptions;
 using Xunit;
 

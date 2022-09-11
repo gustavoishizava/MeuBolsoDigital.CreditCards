@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MBD.CreditCards.Domain.Entities.Common;
-using MBD.CreditCards.Domain.Enumerations;
 using MeuBolsoDigital.Core.Assertions;
 using MeuBolsoDigital.Core.Interfaces.Entities;
 

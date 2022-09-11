@@ -1,8 +1,8 @@
 using System;
 using FluentValidation;
 using FluentValidation.Results;
+using MBD.CreditCards.Domain.Entities;
 using MBD.CreditCards.Domain.Entities.Common;
-using MBD.CreditCards.Domain.Enumerations;
 
 namespace MBD.CreditCards.Application.Requests
 {
