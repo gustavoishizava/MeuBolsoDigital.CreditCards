@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MBD.Core.Data;
 using MBD.CreditCards.Domain.Entities;
+using MeuBolsoDigital.Core.Interfaces.Repositories;
 
 namespace MBD.CreditCards.Domain.Interfaces.Repositories
 {

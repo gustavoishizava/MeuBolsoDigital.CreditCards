@@ -1,5 +1,5 @@
 using System;
-using MBD.Core;
+using MeuBolsoDigital.Core.Assertions;
 
 namespace MBD.CreditCards.Domain.Entities
 {
@@ -12,7 +12,7 @@ namespace MBD.CreditCards.Domain.Entities
 
         internal Transaction(Guid id, Guid creditCardBillId, decimal value, DateTime createdAt)
         {
-            Assertions.IsGreaterOrEqualsThan(value, 0, "O valor não pode ser menor que R$0,00.");
+            DomainAssertions.IsGreaterOrEqualsThan(value, 0, "O valor não pode ser menor que R$0,00.");
 
             Id = id;
             CreditCardBillId = creditCardBillId;

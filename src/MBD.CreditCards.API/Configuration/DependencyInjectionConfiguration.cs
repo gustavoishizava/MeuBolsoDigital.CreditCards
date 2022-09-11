@@ -1,7 +1,5 @@
 using System.Reflection;
-using MBD.Core.Data;
-using MBD.Core.Identity;
-using MBD.CreditCards.Application.BackgroundServices;
+using MBD.CreditCards.API.Identity;
 using MBD.CreditCards.Application.IntegrationEvents.Events;
 using MBD.CreditCards.Application.IntegrationEvents.Handlers;
 using MBD.CreditCards.Application.Interfaces;
@@ -9,8 +7,9 @@ using MBD.CreditCards.Application.Services;
 using MBD.CreditCards.Domain.Interfaces.Repositories;
 using MBD.CreditCards.Infrastructure;
 using MBD.CreditCards.Infrastructure.Repositories;
-using MBD.MessageBus;
 using MediatR;
+using MeuBolsoDigital.Core.Interfaces.Identity;
+using MeuBolsoDigital.Core.Interfaces.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,7 +27,7 @@ namespace MBD.CreditCards.API.Configuration
                     .AddIntegrationEvents();
 
             services.AddHttpContextAccessor();
-            services.AddScoped<IAspNetUser, AspNetUser>();
+            services.AddScoped<ILoggedUser, WebAppUser>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.Load("MBD.CreditCards.Application"));
 
@@ -53,23 +52,16 @@ namespace MBD.CreditCards.API.Configuration
 
         public static IServiceCollection AddConsumers(this IServiceCollection services)
         {
-            services.AddHostedService<TransactionsConsumerService>();
-            services.AddHostedService<BankAccountsConsumerService>();
-
             return services;
         }
 
         public static IServiceCollection AddMessageBus(this IServiceCollection services)
         {
-            services.AddSingleton<IMessageBus, MessageBus.MessageBus>();
-
             return services;
         }
 
         public static IServiceCollection AddConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<RabbitMqConfiguration>(configuration.GetSection(nameof(RabbitMqConfiguration)));
-
             return services;
         }
 

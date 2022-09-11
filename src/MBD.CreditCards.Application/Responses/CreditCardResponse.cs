@@ -1,5 +1,5 @@
 using System;
-using MBD.Core.Enumerations;
+using MBD.CreditCards.Domain.Entities.Common;
 using MBD.CreditCards.Domain.Enumerations;
 
 namespace MBD.CreditCards.Application.Responses

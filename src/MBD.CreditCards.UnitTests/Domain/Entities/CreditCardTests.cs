@@ -1,8 +1,8 @@
 using System;
-using MBD.Core.DomainObjects;
-using MBD.Core.Enumerations;
 using MBD.CreditCards.Domain.Entities;
+using MBD.CreditCards.Domain.Entities.Common;
 using MBD.CreditCards.Domain.Enumerations;
+using MeuBolsoDigital.Core.Exceptions;
 using Xunit;
 
 namespace MBD.CreditCards.UnitTests.Domain.Entities

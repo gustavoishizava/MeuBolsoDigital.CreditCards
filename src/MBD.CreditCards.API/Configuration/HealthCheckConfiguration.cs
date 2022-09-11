@@ -1,4 +1,3 @@
-using MBD.CreditCards.Infrastructure.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,8 +8,7 @@ namespace MBD.CreditCards.API.Configuration
     {
         public static IServiceCollection AddHealthCheckConfiguration(this IServiceCollection services)
         {
-            services.AddHealthChecks()
-                .AddDbContextCheck<CreditCardContext>();
+            services.AddHealthChecks();
 
             return services;
         }

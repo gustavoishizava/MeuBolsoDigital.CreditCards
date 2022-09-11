@@ -2,29 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using MBD.Application.Core.Response;
-using MBD.Core.Data;
-using MBD.Core.Enumerations;
-using MBD.Core.Identity;
 using MBD.CreditCards.Application.Interfaces;
 using MBD.CreditCards.Application.Requests;
 using MBD.CreditCards.Application.Responses;
 using MBD.CreditCards.Domain.Entities;
+using MBD.CreditCards.Domain.Entities.Common;
 using MBD.CreditCards.Domain.Interfaces.Repositories;
+using MeuBolsoDigital.Application.Utils.Responses;
+using MeuBolsoDigital.Application.Utils.Responses.Interfaces;
+using MeuBolsoDigital.Core.Interfaces.Identity;
+using MeuBolsoDigital.Core.Interfaces.Repositories;
 
 namespace MBD.CreditCards.Application.Services
 {
     public class CreditCardAppService : ICreditCardAppService
     {
-        private readonly IAspNetUser _aspNetUser;
+        private readonly ILoggedUser _loggedUser;
         private readonly IMapper _mapper;
         private readonly ICreditCardRepository _repository;
         private readonly IBankAccountRepository _bankAccountRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CreditCardAppService(IAspNetUser aspNetUser, IMapper mapper, ICreditCardRepository repository, IBankAccountRepository bankAccountRepository, IUnitOfWork unitOfWork)
+        public CreditCardAppService(ILoggedUser loggedUser, IMapper mapper, ICreditCardRepository repository, IBankAccountRepository bankAccountRepository, IUnitOfWork unitOfWork)
         {
-            _aspNetUser = aspNetUser;
+            _loggedUser = loggedUser;
             _mapper = mapper;
             _repository = repository;
             _bankAccountRepository = bankAccountRepository;
@@ -41,7 +42,7 @@ namespace MBD.CreditCards.Application.Services
             if (bankAccount == null)
                 return Result<CreditCardResponse>.Fail("Conta bancária inválida.");
 
-            var creditCard = new CreditCard(_aspNetUser.UserId,
+            var creditCard = new CreditCard(_loggedUser.UserId,
                                             bankAccount,
                                             request.Name,
                                             request.ClosingDay,
@@ -49,8 +50,8 @@ namespace MBD.CreditCards.Application.Services
                                             request.Limit,
                                             request.Brand);
 
-            _repository.Add(creditCard);
-            await _unitOfWork.SaveChangesAsync();
+            await _repository.AddAsync(creditCard);
+            await _unitOfWork.CommitAsync();
 
             return Result<CreditCardResponse>.Success(_mapper.Map<CreditCardResponse>(creditCard));
         }
@@ -75,8 +76,8 @@ namespace MBD.CreditCards.Application.Services
             if (creditCard == null)
                 return Result.Fail("Cartão de crédito inválido.");
 
-            _repository.Remove(creditCard);
-            await _unitOfWork.SaveChangesAsync();
+            await _repository.RemoveAsync(creditCard);
+            await _unitOfWork.CommitAsync();
 
             return Result.Success();
         }
@@ -106,7 +107,7 @@ namespace MBD.CreditCards.Application.Services
             else
                 creditCard.Deactivate();
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.CommitAsync();
 
             return Result.Success();
         }

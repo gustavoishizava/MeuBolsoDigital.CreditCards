@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MBD.Core;
-using MBD.Core.Entities;
-using MBD.Core.Enumerations;
+using MBD.CreditCards.Domain.Entities.Common;
 using MBD.CreditCards.Domain.Enumerations;
+using MeuBolsoDigital.Core.Assertions;
+using MeuBolsoDigital.Core.Interfaces.Entities;
 
 namespace MBD.CreditCards.Domain.Entities
 {
@@ -46,29 +46,29 @@ namespace MBD.CreditCards.Domain.Entities
 
         public void SetName(string name)
         {
-            Assertions.IsNotNullOrEmpty(name, "Informe um nome.");
-            Assertions.HasMaxLength(name, 100, "O nome não deve conter mais que 100 caractes.");
+            DomainAssertions.IsNotNullOrEmpty(name, "Informe um nome.");
+            DomainAssertions.HasMaxLength(name, 100, "O nome não deve conter mais que 100 caractes.");
 
             Name = name;
         }
 
         public void SetClosingDay(int closingDay)
         {
-            Assertions.IsBetween(closingDay, 1, 31, "A data de fechamento da fatura deve estar entre os dias 1 - 31.");
+            DomainAssertions.IsBetween(closingDay, 1, 31, "A data de fechamento da fatura deve estar entre os dias 1 - 31.");
 
             ClosingDay = closingDay;
         }
 
         public void SetDayOfPayment(int dayOfPayment)
         {
-            Assertions.IsBetween(dayOfPayment, 1, 31, "A data de pagamento da fatura deve estar entre os dias 1 - 31.");
+            DomainAssertions.IsBetween(dayOfPayment, 1, 31, "A data de pagamento da fatura deve estar entre os dias 1 - 31.");
 
             DayOfPayment = dayOfPayment;
         }
 
         public void SetLimit(decimal limit)
         {
-            Assertions.IsGreaterThan(limit, 0, "O limite deve ser maior que R$0,00.");
+            DomainAssertions.IsGreaterThan(limit, 0, "O limite deve ser maior que R$0,00.");
 
             Limit = limit;
         }
@@ -94,7 +94,7 @@ namespace MBD.CreditCards.Domain.Entities
 
         private CreditCardBill AddBill(int month, int year)
         {
-            Assertions.IsTrue(ReferenceIsAvailable(month, year), $"Não é possível criar uma fatura com as referências mês ({month}) e ano ({year}), pois já existe uma fatura cadastrada para esta referência.");
+            DomainAssertions.IsTrue(ReferenceIsAvailable(month, year), $"Não é possível criar uma fatura com as referências mês ({month}) e ano ({year}), pois já existe uma fatura cadastrada para esta referência.");
 
             var bill = new CreditCardBill(Id, DayOfPayment, ClosingDay, month, year);
             _bills.Add(bill);

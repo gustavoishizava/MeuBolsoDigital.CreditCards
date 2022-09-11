@@ -1,5 +1,5 @@
 using System;
-using MBD.Core;
+using MeuBolsoDigital.Core.Assertions;
 
 namespace MBD.CreditCards.Domain.ValueObjects
 {
@@ -10,8 +10,8 @@ namespace MBD.CreditCards.Domain.ValueObjects
 
         public BillReference(int month, int year)
         {
-            Assertions.IsBetween(month, 1, 12, "Informe um mês de referência válido.");
-            Assertions.IsBetween(year, 1900, 2999, "Informe um ano de referência válido.");
+            DomainAssertions.IsBetween(month, 1, 12, "Informe um mês de referência válido.");
+            DomainAssertions.IsBetween(year, 1900, 2999, "Informe um ano de referência válido.");
 
             Month = month;
             Year = year;
@@ -33,7 +33,7 @@ namespace MBD.CreditCards.Domain.ValueObjects
 
         private DateTime GetDate(int day)
         {
-            Assertions.IsBetween(day, 1, 31, "Informe um dia de fechamento válido.");
+            DomainAssertions.IsBetween(day, 1, 31, "Informe um dia de fechamento válido.");
 
             var daysInMonth = DateTime.DaysInMonth(Year, Month);
             if ((day == 31 || (day > 28 && Month == 2)) && daysInMonth < day)

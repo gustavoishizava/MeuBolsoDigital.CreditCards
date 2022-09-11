@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System;
 using System.Threading.Tasks;
-using MBD.Application.Core.Response;
 using MBD.CreditCards.Application.Requests;
 using MBD.CreditCards.Application.Responses;
+using MeuBolsoDigital.Application.Utils.Responses.Interfaces;
 
 namespace MBD.CreditCards.Application.Interfaces
 {

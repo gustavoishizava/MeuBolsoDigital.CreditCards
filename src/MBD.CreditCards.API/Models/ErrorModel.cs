@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using MBD.Application.Core.Response;
-using MBD.Core.Extensions;
+using MeuBolsoDigital.Application.Utils.Responses.Interfaces;
+using MeuBolsoDigital.CrossCutting.Extensions;
 
 namespace MBD.CreditCards.API.Models
 {

@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Building blocks\Core\MBD.Core\MBD.Core.csproj" />
+    <PackageReference Include="MeuBolsoDigital.Core" Version="1.0.2"/>
+    <PackageReference Include="MeuBolsoDigital.CrossCutting" Version="1.0.0"/>
   </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
-
 </Project>

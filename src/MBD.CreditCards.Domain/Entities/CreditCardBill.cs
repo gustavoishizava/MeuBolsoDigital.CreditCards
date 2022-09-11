@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MBD.Core;
-using MBD.Core.Entities;
+using MBD.CreditCards.Domain.Entities.Common;
 using MBD.CreditCards.Domain.ValueObjects;
+using MeuBolsoDigital.Core.Assertions;
+using MeuBolsoDigital.Core.Interfaces.Entities;
 
 namespace MBD.CreditCards.Domain.Entities
 {
@@ -36,7 +37,7 @@ namespace MBD.CreditCards.Domain.Entities
 
         private void SetDates(int paymentDay, int closingDay, int month, int year)
         {
-            Assertions.IsNotNull(Reference, "Informe a referência da fatura.");
+            DomainAssertions.IsNotNull(Reference, "Informe a referência da fatura.");
 
             DueDate = Reference.GetDueDate(paymentDay);
             ClosesIn = Reference.GetClosingDate(closingDay);
@@ -57,7 +58,7 @@ namespace MBD.CreditCards.Domain.Entities
 
         internal void AddTransaction(Guid transactionId, decimal value, DateTime createdAt)
         {
-            Assertions.IsFalse(ExistingTransaction(transactionId), $"Transação já existente. Id='{transactionId}'.");
+            DomainAssertions.IsFalse(ExistingTransaction(transactionId), $"Transação já existente. Id='{transactionId}'.");
 
             _transactions.Add(new Transaction(transactionId, Id, value, createdAt));
         }

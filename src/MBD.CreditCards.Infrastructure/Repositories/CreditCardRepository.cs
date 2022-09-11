@@ -3,43 +3,34 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MBD.CreditCards.Domain.Entities;
 using MBD.CreditCards.Domain.Interfaces.Repositories;
-using MBD.CreditCards.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
 
 namespace MBD.CreditCards.Infrastructure.Repositories
 {
     public class CreditCardRepository : ICreditCardRepository
     {
-        private readonly CreditCardContext _context;
-
-        public CreditCardRepository(CreditCardContext context)
+        public Task AddAsync(CreditCard entity)
         {
-            _context = context;
+            throw new NotImplementedException();
         }
 
-        public void Add(CreditCard entity)
+        public Task<IEnumerable<CreditCard>> GetAllAsync()
         {
-            _context.Add(entity);
+            throw new NotImplementedException();
         }
 
-        public async Task<CreditCard> GetByIdAsync(Guid id)
+        public Task<CreditCard> GetByIdAsync(Guid id)
         {
-            return await _context.CreditCards.FindAsync(id);
+            throw new NotImplementedException();
         }
 
-        public void Remove(CreditCard entity)
+        public Task RemoveAsync(CreditCard entity)
         {
-            _context.Remove(entity);
+            throw new NotImplementedException();
         }
 
-        public void Update(CreditCard entity)
+        public Task UpdateAsync(CreditCard entity)
         {
-            _context.Update(entity);
-        }
-
-        public async Task<IEnumerable<CreditCard>> GetAllAsync()
-        {
-            return await _context.CreditCards.ToListAsync();
+            throw new NotImplementedException();
         }
     }
 }

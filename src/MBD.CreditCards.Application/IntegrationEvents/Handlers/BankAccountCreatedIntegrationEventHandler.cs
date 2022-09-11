@@ -1,10 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
-using MBD.Core.Data;
 using MBD.CreditCards.Application.IntegrationEvents.Events;
 using MBD.CreditCards.Domain.Entities;
 using MBD.CreditCards.Domain.Interfaces.Repositories;
 using MediatR;
+using MeuBolsoDigital.Core.Interfaces.Repositories;
 
 namespace MBD.CreditCards.Application.IntegrationEvents.Handlers
 {
@@ -24,7 +24,7 @@ namespace MBD.CreditCards.Application.IntegrationEvents.Handlers
             var bankAccount = new BankAccount(notification.Id, notification.TenantId, notification.Description);
             _bankAccountRepository.Add(bankAccount);
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.CommitAsync();
         }
     }
 }
