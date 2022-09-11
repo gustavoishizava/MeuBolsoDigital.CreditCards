@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using DotNet.MongoDB.Context.Extensions;
 using MBD.CreditCards.Infrastructure.Context;
 using MBD.CreditCards.Infrastructure.Context.CustomSerializers;
@@ -8,6 +9,7 @@ using MongoDB.Bson.Serialization.Serializers;
 
 namespace MBD.CreditCards.API.Configuration
 {
+    [ExcludeFromCodeCoverage]
     public static class DatabaseConfiguration
     {
         public static IServiceCollection AddDatabaseContextConfiguration(this IServiceCollection services, IConfiguration configuration)

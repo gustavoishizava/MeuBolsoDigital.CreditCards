@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using MBD.CreditCards.API.Identity;
 using MBD.CreditCards.Application.IntegrationEvents.Events;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MBD.CreditCards.API.Configuration
 {
+    [ExcludeFromCodeCoverage]
     public static class DependencyInjectionConfiguration
     {
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)

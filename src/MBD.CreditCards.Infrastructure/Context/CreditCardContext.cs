@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using DotNet.MongoDB.Context.Configuration;
 using DotNet.MongoDB.Context.Context;
 using DotNet.MongoDB.Context.Context.ModelConfiguration;
@@ -6,6 +7,7 @@ using MBD.CreditCards.Domain.Entities.Common;
 
 namespace MBD.CreditCards.Infrastructure.Context
 {
+    [ExcludeFromCodeCoverage]
     public class CreditCardContext : DbContext
     {
         public CreditCardContext(MongoDbContextOptions options) : base(options)
