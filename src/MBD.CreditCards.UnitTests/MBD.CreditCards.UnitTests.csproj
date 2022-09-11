@@ -20,9 +20,11 @@
     <PackageReference Include="Moq.AutoMock" Version="3.4.0"/>
     <PackageReference Include="MeuBolsoDigital.Application.Utils" Version="1.0.2"/>
     <PackageReference Include="Bogus" Version="34.0.2"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MBD.CreditCards.Domain\MBD.CreditCards.Domain.csproj"/>
     <ProjectReference Include="..\MBD.CreditCards.Application\MBD.CreditCards.Application.csproj"/>
+    <ProjectReference Include="..\MBD.CreditCards.API\MBD.CreditCards.API.csproj"/>
   </ItemGroup>
 </Project>

@@ -36,7 +36,7 @@ namespace MBD.CreditCards.API.Controllers
             if (!result.Succeeded)
                 return BadRequest(new ErrorModel(result));
 
-            return Created($"api/creditcards/{result.Data.Id}", result.Data);
+            return Created($"api/credit-cards/{result.Data.Id}", result.Data);
         }
 
         [HttpPut]
