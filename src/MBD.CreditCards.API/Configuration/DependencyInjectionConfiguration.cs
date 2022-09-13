@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using MBD.CreditCards.API.Identity;
+using MBD.CreditCards.API.Workers;
 using MBD.CreditCards.Application.IntegrationEvents.Events;
 using MBD.CreditCards.Application.IntegrationEvents.Handlers;
 using MBD.CreditCards.Application.Interfaces;
@@ -11,6 +12,7 @@ using MBD.CreditCards.Infrastructure.Repositories;
 using MediatR;
 using MeuBolsoDigital.Core.Interfaces.Identity;
 using MeuBolsoDigital.Core.Interfaces.Repositories;
+using MeuBolsoDigital.RabbitMQ.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,7 +26,7 @@ namespace MBD.CreditCards.API.Configuration
             services.AddAppServices()
                     .AddRepositories()
                     .AddConsumers()
-                    .AddMessageBus()
+                    .AddMessageBus(configuration)
                     .AddConfigurations(configuration)
                     .AddIntegrationEvents();
 
@@ -54,11 +56,15 @@ namespace MBD.CreditCards.API.Configuration
 
         public static IServiceCollection AddConsumers(this IServiceCollection services)
         {
+            services.AddHostedService<RabbitMqConsumerWorker>();
+
             return services;
         }
 
-        public static IServiceCollection AddMessageBus(this IServiceCollection services)
+        public static IServiceCollection AddMessageBus(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddRabbitMqConnection(configuration);
+
             return services;
         }
 
