@@ -63,7 +63,7 @@ namespace MBD.CreditCards.API.Workers
         {
             _rabbitMqConnection.Channel.QueueDeclare(queue: _queueName,
                                                      durable: true,
-                                                     exclusive: true,
+                                                     exclusive: false,
                                                      autoDelete: false,
                                                      arguments: null);
 
